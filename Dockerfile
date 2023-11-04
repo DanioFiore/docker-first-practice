@@ -4,11 +4,14 @@ FROM node
 # THIS WILL BE THE ROOT 
 WORKDIR /app
 
-# FILES THAT WILL GO INTO THE IMAGE. WITH THE . WE TELL THE SAME FOLDER THAT CONTAINS THE DOCKERFILE, THE SECOND PARAM IS THE PATH INSIDE OF THE IMAGE WHERE THE FILES SHOULD BE STORED
-COPY . /app
+# IS GOOD PRACTICE TO COPY THE PACKAGE.JSON AND RUN NPM INSTALL FOR FIRST, BECAUSE IF WE CHANGE OUR CODE, IT WILL NOT RERUN THE NPM INSTALL COMMAND
+COPY package.json /app
 
 # AFTER COPIED, I WANT TO RUN A COMMAND. THE COMMANDS HAVE EFFECT INTO THE ROOT DIRECTORY, IN THIS CASE /app. IF THE ARE THE WORKDIR COMMAND, THE COMMAND RUNS THERE, IF THERE AREN'T, THE COMMAND WILL RUN INTO THE FOLDER SPECIFIED INTO COPY
 RUN npm install
+
+# FILES THAT WILL GO INTO THE IMAGE. WITH THE . WE TELL THE SAME FOLDER THAT CONTAINS THE DOCKERFILE, THE SECOND PARAM IS THE PATH INSIDE OF THE IMAGE WHERE THE FILES SHOULD BE STORED
+COPY . /app
 
 # EXPOSE ON THE PORT, SAME IN OUR server.js FILE, BUT THIS IS ONLY FOR DOCUMENTATION, IT DOES NOTHING, IT'S A GOOD PRACTICE TO HAVE IT
 EXPOSE 80
@@ -31,3 +34,5 @@ CMD ["node", "server.js"]
 
 # STUDY
 # when we run docker build, we take a snapshot of our code, so if after the image are build, we update our code, the image will not take the changes, we have to re-run docker build to create a new image
+
+# the images are build as a layer, it caches the images and if that don't change, it will rebuild it using the cache, when we run docker build. But, if it notice that there is a change in a layer, it use the cache for all the layers before, and rebuild all the layer next. EVERY INSTRUCTION IN AN IMAGE CREATES A CACHABLE LAYER
