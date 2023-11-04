@@ -28,3 +28,6 @@ CMD ["node", "server.js"]
 # docker build <path> = create the image
 # -p = port
 # docker run -p 3000:80 <container_id> = run the container, 3000 (ex) where we want to expose in our local machine, 80 (ex) internal docker container exposed port
+
+# STUDY
+# when we run docker build, we take a snapshot of our code, so if after the image are build, we update our code, the image will not take the changes, we have to re-run docker build to create a new image
