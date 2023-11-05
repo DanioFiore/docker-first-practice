@@ -25,12 +25,16 @@ CMD ["node", "server.js"]
 # AFTER WE HAVE TO RUN THE CONTAINER, WITH docker run -p 3000:80 <container_id>
 
 # TERMINAL COMMANDS
+# docker --help = show all commands
 # docker ps = show the running containers
 # docker ps -a = show the container history
 # docker stop <container_name> = stop the container, to do in another terminal, we don't have to insert the full name, even a few letters it's okay
 # docker build <path> = create the image
 # -p = port
-# docker run -p 3000:80 <container_id> = run the container, 3000 (ex) where we want to expose in our local machine, 80 (ex) internal docker container exposed port
+# docker run -p 3000:80 <container_id> = run the container, 3000 (ex) where we want to expose in our local machine, 80 (ex) internal docker container exposed port. By adding -d (docker run -p 3000:80 -d <container_id>) we enter in detatch mode, so we run the container but we now can use the terminal
+# docker start <container_name> = run the container in detatch mode
+# docker attach <container_name> = we now attach again to the container and block the terminal
+# docker logs -f <container_name> = follow the logs when we are in detatch mode, so we can see the console.log
 
 # STUDY
 # when we run docker build, we take a snapshot of our code, so if after the image are build, we update our code, the image will not take the changes, we have to re-run docker build to create a new image
