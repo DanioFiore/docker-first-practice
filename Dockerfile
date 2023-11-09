@@ -35,6 +35,7 @@ CMD ["node", "server.js"]
 # docker start <container_name> = run the container in detatch mode
 # docker attach <container_name> = we now attach again to the container and block the terminal
 # docker logs -f <container_name> = follow the logs when we are in detatch mode, so we can see the console.log
+# docker run -it <container_name> = to allows inputs into the terminal
 # docker container prune = TO REMOVE ALL STOPPED CONTAINER AT ONCE
 # docker rm <container> = to remove a container
 # docker image = TO RETRIEVE A LIST OF OUR IMAGES STORED
@@ -44,6 +45,7 @@ CMD ["node", "server.js"]
 # docker image inspect <image_id> = show the details of the image, we didn't see only our layers in the dockerfile, but also the layers of the FROM image
 # --name to assign a name to a container when runs (docker run -p 3001:80 -d --rm --name <new_name> <container_name>)
 #  -t = to assigna a name and a tag to the image (docker build -t goals:latest .)
+# docker tag <old-name> <new_nam> = create a clone of an image with new name
 
 # STUDY
 # when we run docker build, we take a snapshot of our code, so if after the image are build, we update our code, the image will not take the changes, we have to re-run docker build to create a new image
@@ -54,3 +56,7 @@ CMD ["node", "server.js"]
 # WE CAN REMOVE IMAGES IF ONLY THEY ARE NOT USED, SO WE NEED TO STOP THE CONTAINER THAT USE THAT IMAGE
 
 # for images we have tag and name, the syntax is name:tag, for example, (node:14.9.0) so we can specify a specific version
+
+# docker login is to log in our dockerhub account
+# to push an image into dockerhub: docker push <image_name> to do this you have to rename the image by setting it like: dockerhub_id/dockerrepository
+# to pull an image from dockerhub: docker pull <image_name>
